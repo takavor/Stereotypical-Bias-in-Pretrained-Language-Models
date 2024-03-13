@@ -5,16 +5,16 @@ from openai import OpenAI
 client = OpenAI()
 
 # load data
-with open('data/data_copy.json') as file:
+with open('data/data.json') as file:
   data = json.load(file)
 
 # function to generate similar sentences given context
 def generate_similar_contexts(context, labels):
   
-  prompt=f"Generate two sentences similar in meaning to: '{context}'\nThe sentences must also contain a 'BLANK' word, which could be replaced by the following words which are labeled as stereotype, anti-stereotype, or unrelated: {labels}."
+  prompt=f"Generate two sentences by paraphrasing the following sentence while maintaining its semantic meaning:\n'{context}'\nThe sentences you generate must also contain a [BLANK] token, which could be replaced by the following words which are labeled as stereotype, anti-stereotype, or unrelated: {labels}.\nSeparate the sentences by a newline."
 
   completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-4-turbo-preview",
     messages=[
       {"role": "user", "content": prompt}
     ]
@@ -29,7 +29,7 @@ for item in tqdm(data):
   item['response'] = response
 
 # save
-with open('data/updated_data.json', 'w') as file:
+with open('data/data_gpt4.json', 'w') as file:
   json.dump(data, file, indent=4)
   
   
