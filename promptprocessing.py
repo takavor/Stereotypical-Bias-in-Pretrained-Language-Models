@@ -55,7 +55,7 @@ def format_data(original_data, new_data):
             gold_label = sentence_item['gold_label']
             
             sentence_item_to_append = sentence_item.copy()
-            sentence_item_to_append['sentence'] = new_item['context']
+            sentence_item_to_append['sentence'] = modified_item['context']
             
             corresponding_label_word = new_item['labels'][gold_label]
             sentence_item_to_append['sentence'] = sentence_item_to_append['sentence'].replace('BLANK', corresponding_label_word)
