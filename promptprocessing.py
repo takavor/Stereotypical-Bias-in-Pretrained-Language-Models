@@ -11,7 +11,11 @@ def split_data(data):
         item_2 = item.copy()
         
         responses = item['response'].split('\n')
-        
+        # remove blanks after split
+        responses = list(filter(None, responses))
+        if len(responses) > 2:
+            del responses[1] # middle element is sometimes a few extra spaces
+                                
         item_1['response'] = responses[0]
         item_2['response'] = responses[1]
         
@@ -43,6 +47,7 @@ def format_data(original_data, new_data):
         
         modified_item['target'] = original_item['target']
         modified_item['bias_type'] = original_item['bias_type']
+        modified_item['context'] = new_item['response']
         
         sentences = []
         # loop through sentences in original
