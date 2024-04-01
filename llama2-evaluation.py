@@ -28,24 +28,19 @@ print(f'iCAT: {icat_2}')
 
 def graph2():
     # Scores for GPT-2 and LLAMA 2 on Data 1 and Data 2
-    gpt2_scores = [65.97741972437179, 71.97626358386856]
-    llama2_scores = [70.14354066985646, 69.95215311004785]
-
-    # Labels for the datasets
-    data_labels = ['Data 1', 'Data 2']
+    gpt2_scores = [65.97741972437179, 70.14354066985646]
+    llama2_scores = [71.97626358386856, 69.95215311004785]
 
     # The x locations for the groups
-    x = np.arange(len(data_labels))
+    x = np.arange(len(gpt2_scores))
     # The width of the bars
     width = 0.35
 
     fig, ax = plt.subplots()
 
-    # Plotting the GPT-2 scores
-    gpt2_rects = ax.bar(x - width/2, gpt2_scores, width, label='GPT-2')
-
-    # Plotting the LLAMA 2 scores
-    llama2_rects = ax.bar(x + width/2, llama2_scores, width, label='LLAMA 2')
+    # Plotting the bars for GPT-2 and LLAMA 2
+    bars1 = ax.bar(x - width/2, gpt2_scores, width, label='Data 1')
+    bars2 = ax.bar(x + width/2, llama2_scores, width, label='Data 2')
 
     # Removing the grid
     ax.grid(False)
@@ -55,16 +50,15 @@ def graph2():
 
     # Adding labels and title
     ax.set_ylabel('iCAT Scores')
-    ax.set_title('iCAT Score Comparison: GPT-2 vs LLAMA 2')
+    ax.set_title('iCAT Score Comparison by Model and Dataset')
     ax.set_xticks(x)
-    ax.set_xticklabels(data_labels)
+    ax.set_xticklabels(['GPT-2', 'LLAMA 2'])
 
     # Placing the legend outside the plot area, on the top right
-    ax.legend(loc='upper right', bbox_to_anchor=(1, 1))
+    ax.legend(title='Dataset', loc='upper right', bbox_to_anchor=(1, 1))
 
-    # Labelling the bars
+    # Labeling the bars with their respective iCAT scores
     def autolabel(rects):
-        """Attach a text label above each bar in *rects*, displaying its height."""
         for rect in rects:
             height = rect.get_height()
             ax.annotate('{}'.format(round(height, 2)),
@@ -73,8 +67,8 @@ def graph2():
                         textcoords="offset points",
                         ha='center', va='bottom')
 
-    autolabel(gpt2_rects)
-    autolabel(llama2_rects)
+    autolabel(bars1)
+    autolabel(bars2)
 
     # plt.show()
     plt.savefig('results/icat_scores.png')
