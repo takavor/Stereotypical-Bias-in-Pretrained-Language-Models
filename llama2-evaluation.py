@@ -102,9 +102,10 @@ def graph():
     ax.set_title('Scores for Llama2 - Data 1 vs Data 2')
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
-    ax.legend()
+    ax.legend(title='Dataset', loc='upper right', bbox_to_anchor=(1, 1))
 
     # Attach a text label above each bar in *rects*, displaying its height.
+
     def autolabel(rects):
         for rect in rects:
             height = rect.get_height()

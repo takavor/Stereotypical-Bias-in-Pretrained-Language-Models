@@ -26,9 +26,11 @@ questions
 
 
 # Question
-What is the ideal score of stereotype score (ss)?
-- 0
-- 25
-- 50
-- 75
-- 100
+What is the ideal score for the stereotype score (ss)?
+1. 0
+2. 25
+3. 50
+4. 75
+5. 100
+
+Answer: 3.
