@@ -23,3 +23,12 @@ questions
 
 ## evaluation
 - which prompts was seen differently due to prompting
+
+
+# Question
+What is the ideal score of stereotype score (ss)?
+- 0
+- 25
+- 50
+- 75
+- 100
