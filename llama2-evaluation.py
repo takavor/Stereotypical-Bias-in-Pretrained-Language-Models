@@ -28,8 +28,8 @@ print(f'iCAT: {icat_2}')
 
 def graph2():
     # Scores for GPT-2 and LLAMA 2 on Data 1 and Data 2
-    gpt2_scores = [65.97741972437179, 70.14354066985646]
-    llama2_scores = [71.97626358386856, 69.95215311004785]
+    gpt2_scores = [65.97741972437179, icat_1]
+    llama2_scores = [71.97626358386856, icat_2]
 
     # The x locations for the groups
     x = np.arange(len(gpt2_scores))
@@ -42,13 +42,8 @@ def graph2():
     bars1 = ax.bar(x - width/2, gpt2_scores, width, label='Data 1')
     bars2 = ax.bar(x + width/2, llama2_scores, width, label='Data 2')
 
-    # Removing the grid
     ax.grid(False)
-
-    # Setting the range for y values from 0 to 100
     ax.set_ylim(0, 100)
-
-    # Adding labels and title
     ax.set_ylabel('iCAT Scores')
     ax.set_title('iCAT Score Comparison by Model and Dataset')
     ax.set_xticks(x)
@@ -80,11 +75,8 @@ def graph():
     scores_data_1 = {'LMS': lms_1, 'SS': ss_1, 'iCAT': icat_1}
     scores_data_2 = {'LMS': lms_2, 'SS': ss_2, 'iCAT': icat_2}
 
-    # Data labels
     labels = list(scores_data_1.keys())
-    # X locations for the groups
     x = np.arange(len(labels))
-    # Width of the bars
     width = 0.35
 
     plt.figure(figsize=(14, 8))
@@ -96,15 +88,12 @@ def graph():
     # Generate bars for Data 2
     rects2 = ax.bar(x + width/2, scores_data_2.values(), width, label='Data 2')
 
-    # Add some text for labels, title, and custom x-axis tick labels, etc.
     ax.set_xlabel('Score Type')
     ax.set_ylabel('Score Value')
     ax.set_title('Scores for Llama2 - Data 1 vs Data 2')
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.legend(title='Dataset', loc='upper right', bbox_to_anchor=(1, 1))
-
-    # Attach a text label above each bar in *rects*, displaying its height.
 
     def autolabel(rects):
         for rect in rects:
@@ -115,7 +104,6 @@ def graph():
                         textcoords="offset points",
                         ha='center', va='bottom')
 
-    # Call the function to label the heights
     autolabel(rects1)
     autolabel(rects2)
 
