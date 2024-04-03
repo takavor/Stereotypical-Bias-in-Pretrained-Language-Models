@@ -65,3 +65,7 @@ Contributions are welcome! If you have suggestions for improving the code, addin
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+## Notes about Release
+We are not releasing a PyPi package because our generated datasets are available under `data\data_gpt4_2.json` and `data\data_gpt4_1.json`. Furthermore, [installation instructions](#installation) are also available above.
